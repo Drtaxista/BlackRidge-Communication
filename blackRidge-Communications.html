@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BLACKRIDGE COMMUNICATIONS</title>
+
+<style>
+:root {
+  --crimson: #800020;
+  --dark-crimson: #490012;
+  --silver: #c0c0c0;
+  --green: #00ff66;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  background: #500015;
+  font-family: "Courier New", monospace;
+  color: #111;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  background: var(--silver);
+  border: 4px outset #eee;
+  box-shadow: 8px 8px 0 #27000a;
+}
+
+.header {
+  background: var(--crimson);
+  color: white;
+  padding: 20px;
+  border-bottom: 5px solid #33000d;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(24px, 5vw, 40px);
+  letter-spacing: 5px;
+}
+
+.header p {
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #ffb9c8;
+}
+
+.nav {
+  background: #333;
+  padding: 10px;
+  color: white;
+  font-size: 12px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.section {
+  border: 3px ridge #888;
+  margin-bottom: 18px;
+  background: #d0d0d0;
+}
+
+.section-title {
+  background: var(--crimson);
+  color: white;
+  padding: 9px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.section-body {
+  padding: 15px;
+}
+
+.status {
+  background: #111;
+  color: var(--green);
+  padding: 12px;
+  border: 3px inset #888;
+  font-size: 12px;
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+
+.rotors {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.rotor {
+  background: #222;
+  border: 4px ridge #888;
+  width: 105px;
+  text-align: center;
+  padding: 12px;
+  color: white;
+}
+
+.rotor .letter {
+  font-size: 38px;
+  color: #ff3333;
+  font-weight: bold;
+  text-shadow: 0 0 8px red;
+}
+
+.rotor small {
+  display: block;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 12px 0 6px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 3px inset #888;
+  background: #111;
+  color: var(--green);
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  background: #c0c0c0;
+  border: 3px outset white;
+  padding: 12px 18px;
+  margin: 8px 4px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  border-style: inset;
+}
+
+button:hover {
+  background: #e5b2bd;
+}
+
+.primary {
+  background: var(--crimson);
+  color: white;
+  border-color: #c55a70;
+}
+
+.primary:hover {
+  background: #a0002d;
+  color: white;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.output-box {
+  background: #111;
+  color: var(--green);
+  padding: 15px;
+  min-height: 75px;
+  border: 4px inset #777;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+  letter-spacing: 2px;
+}
+
+.position {
+  font-size: 29px;
+  color: #ff3333;
+  text-align: center;
+  padding: 15px 0;
+  font-weight: bold;
+}
+
+.footer {
+  background: var(--dark-crimson);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 2;
+}
+
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@media(max-width: 600px) {
+  .results {
+    grid-template-columns: 1fr;
+  }
+  .content {
+    padding: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+  <h1>BLACKRIDGE</h1>
+  <p>COMMUNICATIONS DIVISION</p>
+</header>
+
+<div class="nav">
+  FILE | ENCRYPTION | TRANSMISSION | SYSTEM
+</div>
+
+<main class="content">
+
+<div class="status">
+  BLACKRIDGE NETWORK TERMINAL [VERSION 2.0]
+  <br>
+  SYSTEM STATUS: <span id="systemStatus">● ONLINE</span>
+  <br>
+  ENCRYPTION MODULE: ACTIVE
+  <br>
+  <span class="blink">_</span> AWAITING OPERATOR INPUT
+</div>
+
+<!-- ROTORS -->
+
+<div class="section">
+  <div class="section-title">
+    ENCRYPTION MODULE // ROTOR CONFIGURATION
+  </div>
+
+  <div class="section-body">
+    <div class="rotors">
+
+      <div class="rotor">
+        <div class="letter" id="r1">---</div>
+        <small>ROTOR I</small>
+      </div>
+
+      <div class="rotor">
+        <div class="letter" id="r2">---</div>
+        <small>ROTOR II</small>
+      </div>
+
+      <div class="rotor">
+        <div class="letter" id="r3">---</div>
+        <small>ROTOR III</small>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MESSAGE INPUT -->
+
+<div class="section">
+  <div class="section-title">
+    MESSAGE COMPOSITION
+  </div>
+
+  <div class="section-body">
+
+    <label>PLUGBOARD CONFIGURATION</label>
+    <input id="plug" placeholder="AB CD EF">
+
+    <label>MESSAGE CONTENT</label>
+    <textarea id="message"
+      placeholder="ENTER MESSAGE HERE..."></textarea>
+
+    <button class="primary" onclick="process('encrypt')">
+      ENCRYPT MESSAGE
+    </button>
+
+    <button onclick="process('decrypt')">
+      DECRYPT MESSAGE
+    </button>
+
+    <button onclick="resetMachine()">
+      CLEAR TERMINAL
+    </button>
+
+  </div>
+</div>
+
+<!-- RESULTS -->
+
+<div class="section">
+  <div class="section-title">
+    TRANSMISSION RESULTS
+  </div>
+
+  <div class="section-body">
+
+    <div class="results">
+
+      <div>
+        <label>TRANSMISSION OUTPUT</label>
+        <div class="output-box" id="output">
+          AWAITING TRANSMISSION...
+        </div>
+      </div>
+
+      <div>
+        <label>FINAL ROTOR POSITIONS</label>
+        <div class="output-box">
+          <div class="position" id="final">---</div>
+          <center style="font-size:10px;color:#aaa">
+            END POSITION
+          </center>
+        </div>
+      </div>
+
+    </div>
+
+    <label>GENERATED STARTING POSITIONS</label>
+    <div class="output-box" id="startPositions">
+      NOT GENERATED
+    </div>
+
+    <button onclick="copyOutput()">
+      COPY TRANSMISSION
+    </button>
+
+    <button onclick="copySettings()">
+      COPY KEY SETTINGS
+    </button>
+
+  </div>
+</div>
+
+</main>
+
+<footer class="footer">
+  BLACKRIDGE COMMUNICATIONS
+  <br>
+  ESTABLISHED 1993 // ENCRYPTION & TRANSMISSION SYSTEMS
+  <br>
+  ALL SYSTEMS OPERATIONAL
+  <br>
+  COPYRIGHT © 1993-2026
+</footer>
+
+</div>
+
+<script>
+
+// =================================
+// BLACKRIDGE ENIGMA ENGINE
+// =================================
+
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const rotors = [
+  "EKMFLGDQVZNTOWYHXUSPAIBRCJ",
+  "AJDKSIRUXBLHWTMCQGZNPYFVOE",
+  "BDFHJLCPRTXVZNYEIWGAKMUSQO"
+];
+
+const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+
+let currentSettings = null;
+
+// =================================
+// RANDOM ROTOR GENERATOR
+// =================================
+
+function generateRotorPositions() {
+
+  return [
+    Math.floor(Math.random() * 26),
+    Math.floor(Math.random() * 26),
+    Math.floor(Math.random() * 26)
+  ];
+
+}
+
+// =================================
+// DISPLAY ROTORS
+// =================================
+
+function displayRotors(positions) {
+
+  positions.forEach((p, i) => {
+
+    document.getElementById("r" + (i + 1))
+      .textContent = alphabet[p];
+
+  });
+
+}
+
+// =================================
+// PLUGBOARD
+// =================================
+
+function makePlugboard() {
+
+  const map = [...alphabet];
+
+  const input = document.getElementById("plug")
+    .value.toUpperCase().replace(/[^A-Z]/g, "");
+
+  if (input.length % 2 !== 0) {
+    throw new Error("Plugboard requires letter pairs.");
+  }
+
+  const used = new Set();
+
+  for (let i = 0; i < input.length; i += 2) {
+
+    const a = input[i];
+    const b = input[i + 1];
+
+    if (a === b || used.has(a) || used.has(b)) {
+      throw new Error("Invalid plugboard configuration.");
+    }
+
+    used.add(a);
+    used.add(b);
+
+    const x = alphabet.indexOf(a);
+    const y = alphabet.indexOf(b);
+
+    map[x] = b;
+    map[y] = a;
+
+  }
+
+  return map;
+
+}
+
+// =================================
+// ROTOR STEPPING
+// =================================
+
+function stepRotors(positions) {
+
+  positions[2] = (positions[2] + 1) % 26;
+
+  if (positions[2] === 0) {
+
+    positions[1] = (positions[1] + 1) % 26;
+
+    if (positions[1] === 0) {
+      positions[0] = (positions[0] + 1) % 26;
+    }
+
+  }
+
+}
+
+// =================================
+// ENIGMA LETTER ENCRYPTION
+// =================================
+
+function encryptLetter(char, positions, plugboard) {
+
+  stepRotors(positions);
+
+  let n = alphabet.indexOf(char);
+
+  // Plugboard forward
+  n = alphabet.indexOf(plugboard[n]);
+
+  // Forward rotors
+  for (let i = 2; i >= 0; i--) {
+
+    const shifted = (n + positions[i]) % 26;
+
+    n = (
+      alphabet.indexOf(rotors[i][shifted])
+      - positions[i] + 26
+    ) % 26;
+
+  }
+
+  // Reflector
+  n = alphabet.indexOf(reflector[n]);
+
+  // Reverse rotors
+  for (let i = 0; i < 3; i++) {
+
+    const shifted = (n + positions[i]) % 26;
+
+    n = (
+      rotors[i].indexOf(alphabet[shifted])
+      - positions[i] + 26
+    ) % 26;
+
+  }
+
+  // Plugboard backward
+  n = alphabet.indexOf(plugboard[n]);
+
+  return alphabet[n];
+
+}
+
+// =================================
+// PROCESS MESSAGE
+// =================================
+
+function process(mode) {
+
+  const message = document.getElementById("message")
+    .value.toUpperCase();
+
+  if (!message.trim()) {
+    alert("PLEASE ENTER A MESSAGE.");
+    return;
+  }
+
+  try {
+
+    const plugboard = makePlugboard();
+
+    let positions;
+
+    if (mode === "encrypt") {
+
+      // Generate fresh random positions
+      positions = generateRotorPositions();
+
+      currentSettings = {
+        start: [...positions],
+        plug: document.getElementById("plug").value.toUpperCase()
+      };
+
+    } else {
+
+      // Decryption requires the original encryption key
+      if (!currentSettings) {
+        alert("NO SAVED ENCRYPTION KEY. ENTER THE ORIGINAL STARTING POSITIONS.");
+        return;
+      }
+
+      positions = [...currentSettings.start];
+
+    }
+
+    // Display starting positions
+    document.getElementById("startPositions").textContent =
+      positions.map(p => alphabet[p]).join(" ");
+
+    // Encrypt or decrypt using the same reversible process
+    let result = "";
+
+    for (const char of message) {
+
+      if (!alphabet.includes(char)) {
+        result += char;
+        continue;
+      }
+
+      result += encryptLetter(char, positions, plugboard);
+
+    }
+
+    // Display result
+    document.getElementById("output").textContent = result;
+
+    // Display final rotor positions
+    document.getElementById("final").textContent =
+      positions.map(p => alphabet[p]).join(" ");
+
+    displayRotors(positions);
+
+    document.getElementById("systemStatus").textContent =
+      mode === "encrypt"
+        ? "● ENCRYPTION COMPLETE"
+        : "● DECRYPTION COMPLETE";
+
+  } catch (error) {
+
+    alert(error.message);
+
+  }
+
+}
+
+// =================================
+// COPY TRANSMISSION
+// =================================
+
+function copyOutput() {
+
+  const output = document.getElementById("output").textContent;
+
+  if (output === "AWAITING TRANSMISSION...") {
+    alert("NO TRANSMISSION AVAILABLE.");
+    return;
+  }
+
+  navigator.clipboard.writeText(output)
+    .then(() => alert("TRANSMISSION COPIED."))
+    .catch(() => alert("COPY FAILED."));
+
+}
+
+// =================================
+// COPY SETTINGS
+// =================================
+
+function copySettings() {
+
+  if (!currentSettings) {
+    alert("NO KEY SETTINGS AVAILABLE.");
+    return;
+  }
+
+  const settings = [
+    "BLACKRIDGE COMMUNICATIONS",
+    "STARTING ROTORS: " +
+      currentSettings.start.map(p => alphabet[p]).join(" "),
+    "PLUGBOARD: " + (currentSettings.plug || "NONE")
+  ].join("\n");
+
+  navigator.clipboard.writeText(settings)
+    .then(() => alert("KEY SETTINGS COPIED."))
+    .catch(() => alert("COPY FAILED."));
+
+}
+
+// =================================
+// RESET
+// =================================
+
+function resetMachine() {
+
+  document.getElementById("message").value = "";
+  document.getElementById("plug").value = "";
+
+  document.getElementById("output").textContent =
+    "AWAITING TRANSMISSION...";
+
+  document.getElementById("startPositions").textContent =
+    "NOT GENERATED";
+
+  document.getElementById("final").textContent = "---";
+
+  ["r1", "r2", "r3"].forEach(id => {
+    document.getElementById(id).textContent = "---";
+  });
+
+  document.getElementById("systemStatus").textContent =
+    "● ONLINE";
+
+  currentSettings = null;
+
+}
+
+</script>
+
+</body>
+</html>
