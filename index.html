@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,220 +7,279 @@
 
 <style>
 :root {
-  --crimson: #800020;
-  --dark-crimson: #490012;
-  --silver: #c0c0c0;
-  --green: #00ff66;
+    --red: #800020;
+    --dark: #490012;
+    --silver: #c0c0c0;
+    --green: #00ff66;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  padding: 15px;
-  background: #500015;
-  font-family: "Courier New", monospace;
-  color: #111;
+    margin: 0;
+    padding: 15px;
+    background: #500015;
+    font-family: "Courier New", monospace;
+    color: #111;
 }
 
 .container {
-  max-width: 1000px;
-  margin: auto;
-  background: var(--silver);
-  border: 4px outset #eee;
-  box-shadow: 8px 8px 0 #27000a;
+    max-width: 1100px;
+    margin: auto;
+    background: var(--silver);
+    border: 4px outset #eee;
+    box-shadow: 8px 8px 0 #27000a;
 }
 
-.header {
-  background: var(--crimson);
-  color: white;
-  padding: 20px;
-  border-bottom: 5px solid #33000d;
+header {
+    background: var(--red);
+    color: white;
+    padding: 22px;
+    border-bottom: 5px solid #33000d;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: clamp(24px, 5vw, 40px);
-  letter-spacing: 5px;
+header h1 {
+    margin: 0;
+    font-size: clamp(25px, 5vw, 42px);
+    letter-spacing: 5px;
 }
 
-.header p {
-  margin-bottom: 0;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #ffb9c8;
+header p {
+    color: #ffb9c8;
+    font-size: 12px;
+    letter-spacing: 2px;
 }
 
-.nav {
-  background: #333;
-  padding: 10px;
-  color: white;
-  font-size: 12px;
+nav {
+    background: #222;
+    padding: 10px;
+    display: none;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
-.content {
-  padding: 20px;
+nav button {
+    background: #444;
+    color: white;
+    border: 2px outset #888;
+    padding: 9px;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 0;
 }
+
+nav button:hover { background: var(--red); }
+
+nav button.locked-btn {
+    background: #2a2a2a;
+    color: #777;
+    border-color: #444;
+    cursor: not-allowed;
+}
+
+nav button.locked-btn:hover {
+    background: #2a2a2a;
+}
+
+.content { padding: 20px; }
+
+.page { display: none; }
+.page.active { display: block; }
 
 .section {
-  border: 3px ridge #888;
-  margin-bottom: 18px;
-  background: #d0d0d0;
+    border: 3px ridge #888;
+    margin-bottom: 18px;
+    background: #d0d0d0;
 }
 
 .section-title {
-  background: var(--crimson);
-  color: white;
-  padding: 9px;
-  font-weight: bold;
-  font-size: 13px;
+    background: var(--red);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 13px;
 }
 
-.section-body {
-  padding: 15px;
-}
+.section-body { padding: 15px; }
 
 .status {
-  background: #111;
-  color: var(--green);
-  padding: 12px;
-  border: 3px inset #888;
-  font-size: 12px;
-  margin-bottom: 18px;
-  line-height: 1.8;
+    background: #111;
+    color: var(--green);
+    padding: 13px;
+    border: 3px inset #888;
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 18px;
 }
 
 .rotors {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .rotor {
-  background: #222;
-  border: 4px ridge #888;
-  width: 105px;
-  text-align: center;
-  padding: 12px;
-  color: white;
+    background: #222;
+    border: 4px ridge #888;
+    width: 105px;
+    text-align: center;
+    padding: 12px;
+    color: white;
 }
 
 .rotor .letter {
-  font-size: 38px;
-  color: #ff3333;
-  font-weight: bold;
-  text-shadow: 0 0 8px red;
+    font-size: 38px;
+    color: #ff3333;
+    font-weight: bold;
+    text-shadow: 0 0 8px red;
 }
 
 .rotor small {
-  display: block;
-  color: #aaa;
-  margin-top: 5px;
+    display: block;
+    color: #aaa;
+    margin-top: 5px;
 }
 
 label {
-  display: block;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 12px 0 6px;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 12px 0 6px;
 }
 
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 3px inset #888;
-  background: #111;
-  color: var(--green);
-  font-family: "Courier New", monospace;
-  font-size: 15px;
+input, textarea, select {
+    width: 100%;
+    padding: 11px;
+    border: 3px inset #888;
+    background: #111;
+    color: var(--green);
+    font-family: inherit;
+    font-size: 14px;
 }
 
 textarea {
-  min-height: 120px;
-  resize: vertical;
+    min-height: 100px;
+    resize: vertical;
 }
 
 button {
-  background: #c0c0c0;
-  border: 3px outset white;
-  padding: 12px 18px;
-  margin: 8px 4px;
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  cursor: pointer;
+    background: #c0c0c0;
+    border: 3px outset white;
+    padding: 11px 17px;
+    margin: 8px 4px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-button:active {
-  border-style: inset;
-}
+button:active { border-style: inset; }
 
-button:hover {
-  background: #e5b2bd;
+button:disabled {
+    background: #999;
+    color: #555;
+    border-color: #777;
+    cursor: not-allowed;
 }
 
 .primary {
-  background: var(--crimson);
-  color: white;
-  border-color: #c55a70;
+    background: var(--red);
+    color: white;
+    border-color: #c55a70;
 }
 
-.primary:hover {
-  background: #a0002d;
-  color: white;
+.primary:hover { background: #a0002d; }
+
+.tile {
+    border: 2px ridge #888;
+    background: #ddd;
+    padding: 14px;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.tile.locked-tile {
+    background: #bbb;
+    opacity: 0.75;
+}
+
+.tile h3 {
+    margin-top: 0;
+    color: var(--red);
+}
+
+.muted {
+    font-size: 11px;
+    color: #555;
+}
+
+.record {
+    background: #111;
+    color: var(--green);
+    padding: 12px;
+    margin-top: 8px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .results {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 12px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
 }
 
 .output-box {
-  background: #111;
-  color: var(--green);
-  padding: 15px;
-  min-height: 75px;
-  border: 4px inset #777;
-  overflow-wrap: anywhere;
-  line-height: 1.7;
-  letter-spacing: 2px;
+    background: #111;
+    color: var(--green);
+    padding: 15px;
+    min-height: 75px;
+    border: 4px inset #777;
+    overflow-wrap: anywhere;
+    line-height: 1.7;
+    letter-spacing: 2px;
 }
 
 .position {
-  font-size: 29px;
-  color: #ff3333;
-  text-align: center;
-  padding: 15px 0;
-  font-weight: bold;
+    font-size: 29px;
+    color: #ff3333;
+    text-align: center;
+    padding: 15px 0;
+    font-weight: bold;
 }
 
-.footer {
-  background: var(--dark-crimson);
-  color: white;
-  padding: 15px;
-  text-align: center;
-  font-size: 11px;
-  line-height: 2;
+.denied-box {
+    background: #111;
+    color: #ff3355;
+    border: 3px inset #800020;
+    padding: 20px;
+    font-weight: bold;
+    line-height: 1.8;
 }
 
-.blink {
-  animation: blink 1s steps(2, start) infinite;
+.error { color: #a00020; font-weight: bold; }
+.success { color: #006622; font-weight: bold; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
 }
 
-@keyframes blink {
-  to { visibility: hidden; }
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-size: 11px;
+    line-height: 2;
 }
 
 @media(max-width: 600px) {
-  .results {
-    grid-template-columns: 1fr;
-  }
-  .content {
-    padding: 10px;
-  }
+    .results {
+        grid-template-columns: 1fr;
+    }
+    body { padding: 5px; }
+    .content { padding: 10px; }
 }
 </style>
 </head>
@@ -230,32 +288,193 @@ button:hover {
 
 <div class="container">
 
-<header class="header">
-  <h1>BLACKRIDGE</h1>
-  <p>COMMUNICATIONS DIVISION</p>
+<header>
+    <h1>BLACKRIDGE</h1>
+    <p>COMMUNICATIONS DIVISION // INTERNAL NETWORK</p>
 </header>
 
-<div class="nav">
-  FILE | ENCRYPTION | TRANSMISSION | SYSTEM
-</div>
+<nav id="mainNav">
+    <button data-page="dashboard" onclick="openSection('dashboard')">HOME</button>
+    <button data-page="personnel" onclick="openSection('personnel')">PERSONNEL</button>
+    <button data-page="documents" onclick="openSection('documents')">DOCUMENTS</button>
+    <button data-page="variants" onclick="openSection('variants')">VARIANTS</button>
+    <button data-page="communications" onclick="openSection('communications')">COMMUNICATIONS</button>
+    <button data-page="enigma" onclick="openSection('enigma')">ENIGMA</button>
+    <button onclick="logout()">LOGOUT</button>
+</nav>
 
 <main class="content">
 
 <div class="status">
-  BLACKRIDGE NETWORK TERMINAL [VERSION 2.0]
-  <br>
-  SYSTEM STATUS: <span id="systemStatus">● ONLINE</span>
-  <br>
-  ENCRYPTION MODULE: ACTIVE
-  <br>
-  <span class="blink">_</span> AWAITING OPERATOR INPUT
+    BLACKRIDGE NETWORK TERMINAL [VERSION 3.0]<br>
+    SERVER STATUS: <span id="serverStatus">ONLINE (LOCAL ARCHIVE)</span><br>
+    DATABASE: INTERNAL MEMORY<br>
+    NETWORK: INTERNAL COMMUNICATIONS
 </div>
 
-<!-- ROTORS -->
+<!-- LOGIN -->
+
+<section id="login" class="page active">
+<div class="section">
+<div class="section-title">PERSONNEL AUTHENTICATION</div>
+<div class="section-body">
+
+<p>AUTHORIZED PERSONNEL ONLY. CONTACT ADMINISTRATION FOR CREDENTIALS.</p>
+
+<form id="loginForm">
+<label>USERNAME</label>
+<input id="loginUser" required autocomplete="username">
+
+<label>PASSWORD</label>
+<input id="loginPass" type="password" required autocomplete="current-password">
+
+<button class="primary" type="submit">ACCESS SYSTEM</button>
+</form>
+
+<p id="loginError" class="error"></p>
+
+</div>
+</div>
+</section>
+
+<!-- ACCESS DENIED -->
+
+<section id="denied" class="page">
+<div class="section">
+<div class="section-title">SECURITY INTERCEPT</div>
+<div class="section-body">
+<div class="denied-box" id="deniedMessage">
+ACCESS DENIED // INSUFFICIENT SECURITY CLEARANCE.
+</div>
+<br>
+<button onclick="openSection('dashboard')">RETURN TO DASHBOARD</button>
+</div>
+</div>
+</section>
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="page">
 
 <div class="section">
+<div class="section-title">OPERATOR DASHBOARD</div>
+<div class="section-body">
+
+<h2>WELCOME, <span id="welcomeName">OPERATOR</span></h2>
+
+<p>BLACKRIDGE COMMUNICATIONS NETWORK.</p>
+
+<div class="grid">
+<div class="tile" id="tile-personnel">
+<h3>PERSONNEL</h3>
+<p>Access registered personnel profiles.</p>
+<button id="btn-tile-personnel" onclick="openSection('personnel')">OPEN</button>
+</div>
+
+<div class="tile" id="tile-documents">
+<h3>DOCUMENT ARCHIVE</h3>
+<p>Browse organizational documents.</p>
+<button id="btn-tile-documents" onclick="openSection('documents')">OPEN</button>
+</div>
+
+<div class="tile" id="tile-variants">
+<h3>VARIANT DATABASE</h3>
+<p>Review variant records.</p>
+<button id="btn-tile-variants" onclick="openSection('variants')">OPEN</button>
+</div>
+
+<div class="tile" id="tile-communications">
+<h3>COMMUNICATIONS</h3>
+<p>View organizational messages.</p>
+<button id="btn-tile-communications" onclick="openSection('communications')">OPEN</button>
+</div>
+
+<div class="tile" id="tile-enigma">
+<h3>ENIGMA TERMINAL</h3>
+<p>Encryption & transmission module.</p>
+<button id="btn-tile-enigma" onclick="openSection('enigma')">OPEN</button>
+</div>
+</div>
+
+<hr>
+
+<p>FULL NAME: <b id="welcomeName2"></b></p>
+<p>POSITION: <b id="welcomeRole"></b></p>
+<p>DEPARTMENT: <b id="welcomeDepartment"></b></p>
+<p>CLEARANCE: <b id="welcomeClearance"></b></p>
+
+</div>
+</div>
+</section>
+
+<!-- PERSONNEL -->
+
+<section id="personnel" class="page">
+<div class="section">
+<div class="section-title">PERSONNEL DATABASE</div>
+<div class="section-body">
+<p>REGISTERED ORGANIZATION PERSONNEL.</p>
+<input id="personnelSearch" placeholder="SEARCH PERSONNEL...">
+<div id="personnelList">LOADING DATABASE...</div>
+</div>
+</div>
+</section>
+
+<!-- DOCUMENTS -->
+
+<section id="documents" class="page">
+<div class="section">
+<div class="section-title">CLASSIFIED DOCUMENT ARCHIVE</div>
+<div class="section-body">
+<p>DOCUMENT ACCESS IS DETERMINED BY PERSONNEL CLEARANCE.</p>
+<div id="documentList">LOADING ARCHIVE...</div>
+</div>
+</div>
+</section>
+
+<!-- VARIANTS -->
+
+<section id="variants" class="page">
+<div class="section">
+<div class="section-title">VARIANT DATABASE</div>
+<div class="section-body">
+<p>BLACKRIDGE VARIANT RECORDS.</p>
+<div id="variantList">LOADING DATABASE...</div>
+</div>
+</div>
+</section>
+
+<!-- COMMUNICATIONS -->
+
+<section id="communications" class="page">
+<div class="section">
+<div class="section-title">INTERNAL COMMUNICATIONS</div>
+<div class="section-body">
+
+<form id="messageForm">
+<label>SUBJECT</label>
+<input id="msgSubject" maxlength="120" required>
+
+<label>MESSAGE</label>
+<textarea id="msgBody" maxlength="3000" required></textarea>
+
+<button class="primary" type="submit">TRANSMIT MESSAGE</button>
+</form>
+
+<hr>
+
+<div id="messageList">LOADING COMMUNICATIONS...</div>
+
+</div>
+</div>
+</section>
+
+<!-- ENIGMA TERMINAL -->
+
+<section id="enigma" class="page">
+<div class="section">
   <div class="section-title">
-    ENCRYPTION MODULE // ROTOR CONFIGURATION
+    BLACKRIDGE ENIGMA TERMINAL // ROTOR CONFIGURATION
   </div>
 
   <div class="section-body">
@@ -280,8 +499,6 @@ button:hover {
   </div>
 </div>
 
-<!-- MESSAGE INPUT -->
-
 <div class="section">
   <div class="section-title">
     MESSAGE COMPOSITION
@@ -293,14 +510,13 @@ button:hover {
     <input id="plug" placeholder="AB CD EF">
 
     <label>MESSAGE CONTENT</label>
-    <textarea id="message"
-      placeholder="ENTER MESSAGE HERE..."></textarea>
+    <textarea id="message" placeholder="ENTER MESSAGE HERE..."></textarea>
 
-    <button class="primary" onclick="process('encrypt')">
+    <button class="primary" onclick="processEnigma('encrypt')">
       ENCRYPT MESSAGE
     </button>
 
-    <button onclick="process('decrypt')">
+    <button onclick="processEnigma('decrypt')">
       DECRYPT MESSAGE
     </button>
 
@@ -310,8 +526,6 @@ button:hover {
 
   </div>
 </div>
-
-<!-- RESULTS -->
 
 <div class="section">
   <div class="section-title">
@@ -356,30 +570,451 @@ button:hover {
 
   </div>
 </div>
+</section>
 
 </main>
 
-<footer class="footer">
-  BLACKRIDGE COMMUNICATIONS
-  <br>
-  ESTABLISHED 1993 // ENCRYPTION & TRANSMISSION SYSTEMS
-  <br>
-  ALL SYSTEMS OPERATIONAL
-  <br>
-  COPYRIGHT © 1993-2026
+<footer>
+BLACKRIDGE COMMUNICATIONS<br>
+ESTABLISHED 1993 // INTERNAL NETWORK<br>
+FICTIONAL ROLEPLAY ORGANIZATION<br>
+ALL RIGHTS RESERVED
 </footer>
 
 </div>
 
 <script>
+// =========================================================================
+// 🌟 ADD & EDIT YOUR LOGINS HERE 🌟
+// =========================================================================
+const DEFAULT_ACCOUNTS = [
+    {
+        username: 'director',
+        password: 'Raccen123',
+        full_name: 'R. Misha',
+        position: 'Director General',
+        department: 'ADMINISTRATION',
+        clearance: 5
+    },
+    {
+        username: 'Mike',
+        password: 'Mike123',
+        full_name: 'M. Smith',
+        position: 'CAPTAIN',
+        department: 'ADMINISTRATION',
+        clearance: 4
+    },
+    {
+        username: 'Cow',
+        password: 'Cow123',
+        full_name: 'G. Misha',
+        position: 'SENIOR OPERATIVE',
+        department: 'SECURITY',
+        clearance: 3
+    },
+    {
+        username: 'LucasR',
+        password: '1225',
+        full_name: 'L. Ramirez',
+        position: 'OPERATIVE',
+        department: 'MEDICAL',
+        clearance: 2
+    },
+    {
+        username: 'Leo',
+        password: 'leo123',
+        full_name: 'L. Vinwell',
+        position: 'SENIOR OPERATIVE',
+        department: 'RESEARCH',
+        clearance: 3
+    },
+    {
+        username: 'Gluton',
+        password: 'food',
+        full_name: 'K. Satan',
+        position: 'JUNIOR OPERATIVE',
+        department: 'UNASSIGNED',
+        clearance: 3
+    },
+    {
+        username: 'Heathen',
+        password: '2cool4u',
+        full_name: 'R. Miller',
+        position: 'OVERSEER',
+        department: 'ADMINISTRATION',
+        clearance: 5
+    },
+    {
+        username: 'Moriko',
+        password: 'moriko123',
+        full_name: 'M. Alloance',
+        position: 'SENIOR OPERATIVE',
+        department: 'TECHINICAL',
+        clearance: 3
+    }
+];
 
-// =================================
+// =========================================================================
+// SECTION CLEARANCE RULES — Set minimum level (1-5) required per page
+// =========================================================================
+const PAGE_CLEARANCE = {
+    dashboard: 1,
+    communications: 2,
+    documents: 2,
+    personnel: 4,
+    variants: 2,
+    enigma: 4
+};
+
+// =========================================================================
+// INTERNAL LORE RECORDS (DOCUMENTS, VARIANTS, MESSAGES)
+// =========================================================================
+const DOCUMENTS = [
+    {
+        title: 'PROTOCOL 01 // NETWORK CONDUCT',
+        category: 'DIRECTIVE',
+        clearance: 1,
+        content: 'ALL COMMUNICATIONS LOGGED ON TERMINAL V3.0 ARE MONITORED BY INTERNAL SECURITY.\nUNAUTHORIZED DISTRIBUTION OF VARIANT RECORDS IS PUNISHABLE BY DEATH.'
+    },
+    {
+        title: '',
+        category: '',
+        clearance: 2,
+        content: ''
+    },
+    {
+        title: '',
+        category: '',
+        clearance: 3,
+        content: '.'
+    },
+    {
+        title: '',
+        category: 'EYES ONLY',
+        clearance: 4,
+        content: '.'
+    }
+];
+
+const VARIANTS = [
+    {
+        designation: '',
+        name: '',
+        classification: '',
+        clearance: 1,
+        description: ''
+    },
+    {
+        designation: '',
+        name: '',
+        classification: '',
+        clearance: 2,
+        description: ''
+    },
+    {
+        designation: '',
+        name: '',
+        classification: '',
+        clearance: 4,
+        description: ''
+    }
+];
+
+const DEFAULT_MESSAGES = [
+    {
+        subject: 'SYSTEM ONLINE // TERMINAL V3.0',
+        body: 'Welcome to the Blackridge Internal Communications Network. Ensure all field observations are logged prior to shift end.',
+        author: 'Director A. Vance',
+        created_at: '1993-11-04 08:00'
+    }
+];
+
+// =========================================================================
+// APPLICATION STATE & ACCESS ENFORCEMENT
+// =========================================================================
+let activeUser = null;
+
+function getAccounts() {
+    const saved = localStorage.getItem('br_accounts');
+    if (saved) {
+        try {
+            const parsed = JSON.parse(saved);
+            DEFAULT_ACCOUNTS.forEach(def => {
+                if (!parsed.some(u => u.username.toLowerCase() === def.username.toLowerCase())) {
+                    parsed.push(def);
+                }
+            });
+            return parsed;
+        } catch (e) {}
+    }
+    return [...DEFAULT_ACCOUNTS];
+}
+
+function getMessages() {
+    const saved = localStorage.getItem('br_messages');
+    if (saved) {
+        try { return JSON.parse(saved); } catch (e) {}
+    }
+    return [...DEFAULT_MESSAGES];
+}
+
+function saveMessages(list) {
+    localStorage.setItem('br_messages', JSON.stringify(list));
+}
+
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+}
+
+function openSection(pageId) {
+    if (!activeUser) {
+        showPage('login');
+        return;
+    }
+
+    const requiredLevel = PAGE_CLEARANCE[pageId] || 1;
+    if (activeUser.clearance < requiredLevel) {
+        document.getElementById('deniedMessage').innerHTML =
+            `ACCESS DENIED // INSUFFICIENT SECURITY CLEARANCE.<br><br>` +
+            `REQUESTED MODULE: <b>${pageId.toUpperCase()}</b><br>` +
+            `REQUIRED CLEARANCE: <b>LEVEL ${requiredLevel}</b><br>` +
+            `YOUR CLEARANCE: <b>LEVEL ${activeUser.clearance}</b>`;
+        showPage('denied');
+        return;
+    }
+
+    showPage(pageId);
+
+    if (pageId === 'personnel') loadPersonnel();
+    if (pageId === 'documents') loadDocuments();
+    if (pageId === 'variants') loadVariants();
+    if (pageId === 'communications') loadMessages();
+}
+
+function updateAccessUI() {
+    if (!activeUser) return;
+
+    document.querySelectorAll('#mainNav button[data-page]').forEach(btn => {
+        const pageId = btn.getAttribute('data-page');
+        const req = PAGE_CLEARANCE[pageId] || 1;
+        const baseLabel = pageId === 'dashboard' ? 'HOME' : pageId.toUpperCase();
+
+        if (activeUser.clearance < req) {
+            btn.classList.add('locked-btn');
+            btn.textContent = `${baseLabel} [LVL ${req}]`;
+        } else {
+            btn.classList.remove('locked-btn');
+            btn.textContent = baseLabel;
+        }
+    });
+
+    ['personnel', 'documents', 'variants', 'communications', 'enigma'].forEach(mod => {
+        const req = PAGE_CLEARANCE[mod] || 1;
+        const tile = document.getElementById('tile-' + mod);
+        const btn = document.getElementById('btn-tile-' + mod);
+        if (!tile || !btn) return;
+
+        if (activeUser.clearance < req) {
+            tile.classList.add('locked-tile');
+            btn.textContent = `LOCKED [LVL ${req}]`;
+        } else {
+            tile.classList.remove('locked-tile');
+            btn.textContent = 'OPEN';
+        }
+    });
+}
+
+function applyUser(user) {
+    activeUser = user;
+    document.getElementById('mainNav').style.display = 'flex';
+    document.getElementById('welcomeName').textContent = user.full_name;
+    document.getElementById('welcomeName2').textContent = user.full_name;
+    document.getElementById('welcomeRole').textContent = user.position;
+    document.getElementById('welcomeDepartment').textContent = user.department;
+    document.getElementById('welcomeClearance').textContent = 'LEVEL ' + user.clearance;
+    updateAccessUI();
+}
+
+function login(event) {
+    event.preventDefault();
+
+    const userInput = document.getElementById('loginUser').value.trim().toLowerCase();
+    const passInput = document.getElementById('loginPass').value;
+
+    const accounts = getAccounts();
+    const match = accounts.find(
+        acc => acc.username.toLowerCase() === userInput && acc.password === passInput
+    );
+
+    if (!match) {
+        document.getElementById('loginError').textContent =
+            'ACCESS DENIED // INVALID CREDENTIALS';
+        return;
+    }
+
+    sessionStorage.setItem('br_session_user', match.username);
+    applyUser(match);
+
+    document.getElementById('loginError').textContent = '';
+    document.getElementById('loginPass').value = '';
+    openSection('dashboard');
+}
+
+function logout() {
+    activeUser = null;
+    sessionStorage.removeItem('br_session_user');
+    document.getElementById('mainNav').style.display = 'none';
+    showPage('login');
+}
+
+function loadPersonnel() {
+    const container = document.getElementById('personnelList');
+    container.replaceChildren();
+
+    const accounts = getAccounts().sort((a, b) => b.clearance - a.clearance);
+
+    accounts.forEach(person => {
+        const card = document.createElement('div');
+        card.className = 'tile';
+
+        const title = document.createElement('h3');
+        title.textContent = person.full_name;
+
+        const role = document.createElement('p');
+        role.textContent = person.position;
+
+        const department = document.createElement('p');
+        department.textContent = 'DEPARTMENT: ' + person.department;
+
+        const clearance = document.createElement('p');
+        clearance.textContent = 'CLEARANCE: LEVEL ' + person.clearance;
+
+        card.append(title, role, department, clearance);
+        container.append(card);
+    });
+
+    filterPersonnel();
+}
+
+function filterPersonnel() {
+    const term = document.getElementById('personnelSearch').value.toLowerCase();
+    document.querySelectorAll('#personnelList .tile').forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(term) ? '' : 'none';
+    });
+}
+
+function loadDocuments() {
+    const container = document.getElementById('documentList');
+    container.replaceChildren();
+
+    const visibleDocs = DOCUMENTS.filter(doc => doc.clearance <= activeUser.clearance);
+
+    visibleDocs.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'tile';
+
+        const title = document.createElement('h3');
+        title.textContent = doc.title;
+
+        const category = document.createElement('p');
+        category.textContent = doc.category + ' // CLEARANCE LEVEL ' + doc.clearance;
+
+        const content = document.createElement('div');
+        content.className = 'record';
+        content.textContent = doc.content;
+
+        card.append(title, category, content);
+        container.append(card);
+    });
+
+    if (!visibleDocs.length) {
+        container.textContent = 'NO DOCUMENTS AVAILABLE AT YOUR CLEARANCE.';
+    }
+}
+
+function loadVariants() {
+    const container = document.getElementById('variantList');
+    container.replaceChildren();
+
+    const visibleVariants = VARIANTS.filter(v => v.clearance <= activeUser.clearance);
+
+    visibleVariants.forEach(variant => {
+        const card = document.createElement('div');
+        card.className = 'tile';
+
+        const title = document.createElement('h3');
+        title.textContent = variant.designation + ' // ' + variant.name;
+
+        const classification = document.createElement('p');
+        classification.textContent = 'CLASSIFICATION: ' + variant.classification;
+
+        const description = document.createElement('p');
+        description.textContent = variant.description;
+
+        card.append(title, classification, description);
+        container.append(card);
+    });
+}
+
+function loadMessages() {
+    const container = document.getElementById('messageList');
+    container.replaceChildren();
+
+    const messages = getMessages();
+
+    messages.forEach(message => {
+        const card = document.createElement('div');
+        card.className = 'tile';
+
+        const title = document.createElement('h3');
+        title.textContent = message.subject;
+
+        const body = document.createElement('p');
+        body.textContent = message.body;
+
+        const author = document.createElement('p');
+        author.className = 'muted';
+        author.textContent = message.author + ' // ' + message.created_at;
+
+        card.append(title, body, author);
+        container.append(card);
+    });
+}
+
+function sendMessage(event) {
+    event.preventDefault();
+
+    const subject = document.getElementById('msgSubject').value.trim();
+    const body = document.getElementById('msgBody').value.trim();
+    if (!subject || !body) return;
+
+    const now = new Date().toISOString().slice(0, 16).replace('T', ' ');
+    const messages = getMessages();
+    messages.unshift({
+        subject: subject,
+        body: body,
+        author: activeUser.full_name,
+        created_at: now
+    });
+
+    saveMessages(messages);
+
+    document.getElementById('msgSubject').value = '';
+    document.getElementById('msgBody').value = '';
+
+    loadMessages();
+    alert('MESSAGE TRANSMITTED.');
+}
+
+// =========================================================================
 // BLACKRIDGE ENIGMA ENGINE
-// =================================
-
+// =========================================================================
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-const rotors = [
+const enigmaRotors = [
   "EKMFLGDQVZNTOWYHXUSPAIBRCJ",
   "AJDKSIRUXBLHWTMCQGZNPYFVOE",
   "BDFHJLCPRTXVZNYEIWGAKMUSQO"
@@ -389,54 +1024,30 @@ const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
 
 let currentSettings = null;
 
-// =================================
-// RANDOM ROTOR GENERATOR
-// =================================
-
 function generateRotorPositions() {
-
   return [
     Math.floor(Math.random() * 26),
     Math.floor(Math.random() * 26),
     Math.floor(Math.random() * 26)
   ];
-
 }
-
-// =================================
-// DISPLAY ROTORS
-// =================================
 
 function displayRotors(positions) {
-
   positions.forEach((p, i) => {
-
-    document.getElementById("r" + (i + 1))
-      .textContent = alphabet[p];
-
+    document.getElementById("r" + (i + 1)).textContent = alphabet[p];
   });
-
 }
 
-// =================================
-// PLUGBOARD
-// =================================
-
 function makePlugboard() {
-
   const map = [...alphabet];
-
-  const input = document.getElementById("plug")
-    .value.toUpperCase().replace(/[^A-Z]/g, "");
+  const input = document.getElementById("plug").value.toUpperCase().replace(/[^A-Z]/g, "");
 
   if (input.length % 2 !== 0) {
     throw new Error("Plugboard requires letter pairs.");
   }
 
   const used = new Set();
-
   for (let i = 0; i < input.length; i += 2) {
-
     const a = input[i];
     const b = input[i + 1];
 
@@ -452,88 +1063,46 @@ function makePlugboard() {
 
     map[x] = b;
     map[y] = a;
-
   }
 
   return map;
-
 }
 
-// =================================
-// ROTOR STEPPING
-// =================================
-
 function stepRotors(positions) {
-
   positions[2] = (positions[2] + 1) % 26;
-
   if (positions[2] === 0) {
-
     positions[1] = (positions[1] + 1) % 26;
-
     if (positions[1] === 0) {
       positions[0] = (positions[0] + 1) % 26;
     }
-
   }
-
 }
 
-// =================================
-// ENIGMA LETTER ENCRYPTION
-// =================================
-
 function encryptLetter(char, positions, plugboard) {
-
   stepRotors(positions);
-
   let n = alphabet.indexOf(char);
 
-  // Plugboard forward
   n = alphabet.indexOf(plugboard[n]);
 
-  // Forward rotors
   for (let i = 2; i >= 0; i--) {
-
     const shifted = (n + positions[i]) % 26;
-
-    n = (
-      alphabet.indexOf(rotors[i][shifted])
-      - positions[i] + 26
-    ) % 26;
-
+    n = (alphabet.indexOf(enigmaRotors[i][shifted]) - positions[i] + 26) % 26;
   }
 
-  // Reflector
   n = alphabet.indexOf(reflector[n]);
 
-  // Reverse rotors
   for (let i = 0; i < 3; i++) {
-
     const shifted = (n + positions[i]) % 26;
-
-    n = (
-      rotors[i].indexOf(alphabet[shifted])
-      - positions[i] + 26
-    ) % 26;
-
+    n = (enigmaRotors[i].indexOf(alphabet[shifted]) - positions[i] + 26) % 26;
   }
 
-  // Plugboard backward
   n = alphabet.indexOf(plugboard[n]);
 
   return alphabet[n];
-
 }
 
-// =================================
-// PROCESS MESSAGE
-// =================================
-
-function process(mode) {
-
-  const message = document.getElementById("message")
-    .value.toUpperCase();
+function processEnigma(mode) {
+  const message = document.getElementById("message").value.toUpperCase();
 
   if (!message.trim()) {
     alert("PLEASE ENTER A MESSAGE.");
@@ -541,144 +1110,102 @@ function process(mode) {
   }
 
   try {
-
     const plugboard = makePlugboard();
-
     let positions;
 
     if (mode === "encrypt") {
-
-      // Generate fresh random positions
       positions = generateRotorPositions();
-
       currentSettings = {
         start: [...positions],
         plug: document.getElementById("plug").value.toUpperCase()
       };
-
     } else {
-
-      // Decryption requires the original encryption key
       if (!currentSettings) {
         alert("NO SAVED ENCRYPTION KEY. ENTER THE ORIGINAL STARTING POSITIONS.");
         return;
       }
-
       positions = [...currentSettings.start];
-
     }
 
-    // Display starting positions
     document.getElementById("startPositions").textContent =
       positions.map(p => alphabet[p]).join(" ");
 
-    // Encrypt or decrypt using the same reversible process
     let result = "";
-
     for (const char of message) {
-
       if (!alphabet.includes(char)) {
         result += char;
         continue;
       }
-
       result += encryptLetter(char, positions, plugboard);
-
     }
 
-    // Display result
     document.getElementById("output").textContent = result;
-
-    // Display final rotor positions
     document.getElementById("final").textContent =
       positions.map(p => alphabet[p]).join(" ");
 
     displayRotors(positions);
-
-    document.getElementById("systemStatus").textContent =
-      mode === "encrypt"
-        ? "● ENCRYPTION COMPLETE"
-        : "● DECRYPTION COMPLETE";
-
   } catch (error) {
-
     alert(error.message);
-
   }
-
 }
 
-// =================================
-// COPY TRANSMISSION
-// =================================
-
 function copyOutput() {
-
   const output = document.getElementById("output").textContent;
-
   if (output === "AWAITING TRANSMISSION...") {
     alert("NO TRANSMISSION AVAILABLE.");
     return;
   }
-
   navigator.clipboard.writeText(output)
     .then(() => alert("TRANSMISSION COPIED."))
     .catch(() => alert("COPY FAILED."));
-
 }
 
-// =================================
-// COPY SETTINGS
-// =================================
-
 function copySettings() {
-
   if (!currentSettings) {
     alert("NO KEY SETTINGS AVAILABLE.");
     return;
   }
-
   const settings = [
     "BLACKRIDGE COMMUNICATIONS",
-    "STARTING ROTORS: " +
-      currentSettings.start.map(p => alphabet[p]).join(" "),
+    "STARTING ROTORS: " + currentSettings.start.map(p => alphabet[p]).join(" "),
     "PLUGBOARD: " + (currentSettings.plug || "NONE")
   ].join("\n");
 
   navigator.clipboard.writeText(settings)
     .then(() => alert("KEY SETTINGS COPIED."))
     .catch(() => alert("COPY FAILED."));
-
 }
 
-// =================================
-// RESET
-// =================================
-
 function resetMachine() {
-
   document.getElementById("message").value = "";
   document.getElementById("plug").value = "";
-
-  document.getElementById("output").textContent =
-    "AWAITING TRANSMISSION...";
-
-  document.getElementById("startPositions").textContent =
-    "NOT GENERATED";
-
+  document.getElementById("output").textContent = "AWAITING TRANSMISSION...";
+  document.getElementById("startPositions").textContent = "NOT GENERATED";
   document.getElementById("final").textContent = "---";
-
   ["r1", "r2", "r3"].forEach(id => {
     document.getElementById(id).textContent = "---";
   });
-
-  document.getElementById("systemStatus").textContent =
-    "● ONLINE";
-
   currentSettings = null;
-
 }
 
+document.getElementById('loginForm').addEventListener('submit', login);
+document.getElementById('messageForm').addEventListener('submit', sendMessage);
+document.getElementById('personnelSearch').addEventListener('input', filterPersonnel);
+
+function initialize() {
+    const savedUsername = sessionStorage.getItem('br_session_user');
+    if (savedUsername) {
+        const match = getAccounts().find(u => u.username === savedUsername);
+        if (match) {
+            applyUser(match);
+            openSection('dashboard');
+            return;
+        }
+    }
+    showPage('login');
+}
+
+initialize();
 </script>
 
 </body>
